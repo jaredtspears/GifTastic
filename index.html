@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>GifTastic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Righteous|Rokkitt" rel="stylesheet">
     <!-- font awesome -->
@@ -24,6 +25,8 @@
 <body>
         <!-- creating a background image like to showcase like a cork board for th gifs to display -->
         <div class="bkgrdImg1"></div>
+        <div class="bkgrdImg2"></div>
+
     <header>
         <br><br><br><br>
             <h1 class="display-4">Gif Tastic!</h1>
@@ -35,14 +38,14 @@
         
         <!-- row 1 -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 col-lg-6">
                 <!-- area for directions -->
                 <h2>To enjoy this sites features ensure you have seen the 1999 movie <strong>Office Space</strong>.</h2>
             </div>
         </div> 
             <!-- row2 -->
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-7 col-lg-4">
             <form>
                 <div class="form-group">
                     <label for="movieInput"><h4>Enter a comical Office Space Reference to find a related gif:</h4></label>
@@ -53,14 +56,25 @@
                 <button id="addMovieRef" type="submit" class="btn btn-dark">Submit</button>
             </form>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 col-lg-4">
                     <!-- area for gifs to display-->
                     <div class="gifDisplay" id ="display"></div>
                 </div>
         </div> 
+             <!-- row 3  -->
+        <div class="row">
+            <div class="col-md-10 col-lg-9">
+                <!-- index of movie array creating buttons -->
+                <div class = "index_i"></div>
+                <div class = "index_images" id="imgBkgrnd" ></div>
+         
+              
+
+            </div>
+        </div>
     </div>   
     
-
+<br><br><br><br><br><br>
 
 
 
@@ -68,4 +82,4 @@
     <!-- JS Script -->
     <script src= "assets/JavaScript/script.js"></script>
 </body>
-</html>>
+</html>
