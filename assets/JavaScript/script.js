@@ -9,6 +9,9 @@ const movie=["PC Load Letter","Damn it feels good to be a gangster", "flare", "J
     //**reminder #index0-button  #index1-button  #index2-button  #index3-button is already created in the html**
     //$("#index0-button").on("click", fuction(){ call ajax such see Cat Button})
 function renderButtons(){
+    //remember to call this empty() fuction BEFORE the for loop so the buttons 
+    //do not stack from a prior rendering of the below for loop
+    $("#index_i").empty();
     //know I will need a loop
     for(var i=0;i< movie.length; i++){
     var index_i = $("<button>");
@@ -20,8 +23,10 @@ function renderButtons(){
         index_i.attr("data-phrase", movie[i])
        
         //this is the index_i for the
-        $(".index_i").append(index_i)
+        $("#index_i").append(index_i)
+       
     }
+    $(div).empty();
 }
 
 $(document).on("click", ".movieButtons", function(){
