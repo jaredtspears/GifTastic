@@ -15,6 +15,8 @@ function renderButtons(){
     //know I will need a loop
     for(var i=0;i< movie.length; i++){
     var index_i = $("<button>");
+        //adding rating var
+    var rating = $("<p>").text("rating " + movie[i].rating);
         //calling the class text index_i to run through the movie array
         index_i.text(movie[i]);
         //setting class to movie buttons
@@ -24,6 +26,8 @@ function renderButtons(){
        
         //this is the index_i for the
         $("#index_i").append(index_i)
+        //not sure why the below is not working yet for the rating
+        // index_i.append(rating)
        
     }
     $(div).empty();
