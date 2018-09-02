@@ -1,7 +1,7 @@
 
 //global vars
 
-const movie=["PC Load Letter","Damn it feels good to be a gangster", "flare", "Jump to Conclusions Map"];
+const movie=["looks like someone has a case of the Monday's","Damn it feels good to be a gangster", "flare button", "Jump to Conclusions Map game "];
     console.log(movie);
    
 
@@ -15,28 +15,36 @@ function renderButtons(){
     //know I will need a loop
     for(var i=0;i< movie.length; i++){
     var index_i = $("<button>");
-        //adding rating var
-    var rating = $("<p>").text("rating " + movie[i].rating);
         //calling the class text index_i to run through the movie array
         index_i.text(movie[i]);
         //setting class to movie buttons
         index_i.attr("class", "movieButtons");
         //var is now stored in the renderButton grabbing from a data value is better than text
-        index_i.attr("data-phrase", movie[i])
+        index_i.attr("data-phrase", movie[i]);
        
         //this is the index_i for the
-        $("#index_i").append(index_i)
-        //not sure why the below is not working yet for the rating
-        // index_i.append(rating)
-       
+        $("#index_i").append(index_i);
+        
+        //======adding the ratings here =====================
+
+          //adding rating var
+        var rating = $("<p>").text("rating " + movie[i].rating);
+             console.log(rating);
+            //not sure why the below is not working yet for the rating
+             $("#index_i").append(rating);
+       //=====================================================
     }
-    $(div).empty();
+    
+    //==========not sure why I had this div being emptied but it was throwing an error so I commented it out=======
+        // $(div).empty();
+    //==============================================================================================================
 }
 
 $(document).on("click", ".movieButtons", function(){
    
     var officeSpace = $(this).attr("data-phrase")
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ officeSpace + "&apiKey=iN6BUxJhH6HZCWIAFBGNbMiNRKqhIjhQ"
+         //added limit to 10 gifs and rating limited up to R to the URL
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ officeSpace + "&apiKey=iN6BUxJhH6HZCWIAFBGNbMiNRKqhIjhQ&limit=10&ratings=R";
     $(".index_images").empty();
 
 // ajax call
