@@ -57,23 +57,19 @@ $(document).on("click", ".movieButtons", function(){
         images.attr("data-state", "still");
              //appending the iamges to the page
          $(".index_images").append(images);
-    //=========end of image data being extracted and appended to <img> element================================
+    //=========end of image data being extracted and appended to <img> element==================================================
     
-    //=======added the data rating to the images==============================================================
-         var rating = $("<p>").html("<h5>Rating:" + response.data[i].rating + " <i class='fas fa-thumbs-up'></i><br><br></h5>");
+    //=======added the data rating to the images=================================================================================
+         var rating = $("<p>").html("<h5>Rating:" + response.data[i].rating + " <i class='fas fa-thumbs-up' id='thumbsUp'></i> / <i class='fas fa-thumbs-down' id='thumbsDown'></i> / <i class='fas fa-question' id='questionPoint'></i> <i class='fas fa-exclamation'id='exPoint'></i><br><br></h5>");
         $(".index_images").append(rating);
-    //========================================================================================================
-      
+    //========================================================================================================================== 
     }
    });
 })
 //movie var buttons will be added here, and data state info from moving to still
 $(document).on("click", ".buttonsPreGen", function(){
 console.log(this);
-  
-    //know this style of if else was used on the static and animated portion of the pausing gif solution
     var state = $(this).attr("data-state");
-
         if (state === "still") {
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate");
@@ -81,7 +77,6 @@ console.log(this);
             $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");
         }
-
 })
 
 //added by user click
