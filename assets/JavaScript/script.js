@@ -5,7 +5,6 @@ const movie=["looks like someone has a case of the Monday's","Damn it feels good
     console.log(movie);
    
 
-//not sure if I will add the buttons in on the html for var movie. 
     //**reminder #index0-button  #index1-button  #index2-button  #index3-button is already created in the html**
     //$("#index0-button").on("click", fuction(){ call ajax such see Cat Button})
 function renderButtons(){
@@ -25,26 +24,29 @@ function renderButtons(){
         //this is the index_i for the
         $("#index_i").append(index_i);
         
-        //======adding the ratings here =====================
-
-          //adding rating var
+        //====adding the ratings here see ln 59 & 72 for an alternative attempt =====
+            
         var rating = $("<p>").text("rating " + movie[i].rating);
-             console.log(rating);
-            //not sure why the below is not working yet for the rating
-             $("#index_i").append(rating);
-       //=====================================================
+             //currently loging object:object
+            console.log("this should be the individualized rating: " + rating);
+            //tested, the ratings are indeed beings withing the paramiters of R
+            //the &ratings=R is not functioning... tested with it and without...
+            //same gifs came up with and without it...trying to get rating of each 
+            //individual gif
+             $("movies").append(rating);
+       //=============================================================================
     }
     
     //==========not sure why I had this div being emptied but it was throwing an error so I commented it out=======
-        // $(div).empty();
+ // $(div).empty();
     //==============================================================================================================
 }
 
 $(document).on("click", ".movieButtons", function(){
-   
+
     var officeSpace = $(this).attr("data-phrase")
          //added limit to 10 gifs and rating limited up to R to the URL
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ officeSpace + "&apiKey=iN6BUxJhH6HZCWIAFBGNbMiNRKqhIjhQ&limit=10&ratings=R";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ officeSpace + "&apiKey=iN6BUxJhH6HZCWIAFBGNbMiNRKqhIjhQ&limit=10&ratings=g";
     $(".index_images").empty();
 
 // ajax call
@@ -54,6 +56,7 @@ $.ajax({
 }).then(function(response){
     console.log(response.data[0].images.fixed_width_small);
     for(var i=0; i < 10; i++){ 
+    var rating = $("<p>"); //just messing to see if this will call to ln 72
     var images = $("<img>");
         images.attr("class", "buttonsPreGen");
         //is the default 
@@ -63,6 +66,12 @@ $.ajax({
         images.attr("data-animate", response.data[i].images.fixed_width_downsampled.url);
         images.attr("data-state", "still");
        
+
+    //=======trying to add the data rating to the images===============
+      
+        rating.attr("data-rating", response.data[i].rating.url);
+         console.log("this should be the rating <p> element info: " + rating); //logging object:object still
+    //================================================================
         //appending the iamges to the page
         $(".index_images").append(images);
     }
