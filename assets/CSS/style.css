@@ -3,10 +3,16 @@ header {
     font-family: 'Righteous', cursive !important;
 }
 
-p, h1, h2, h3, h4, h5, h6, .container{
+p, h1, h2, h3, h4, h6, .container{
     font-family: 'Rokkitt', serif;
 }
 
+h5 {
+    font-family: 'Righteous', cursive;
+    align-content: center;
+    color:red;
+    opacity: .5;
+}
 .bkgrdImg1 {
     background:  url("https://images2.alphacoders.com/808/808417.jpg");
     background-size: cover;

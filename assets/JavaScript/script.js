@@ -24,17 +24,6 @@ function renderButtons(){
         //this is the index_i for the
         $("#index_i").append(index_i);
         
-        //====adding the ratings here see ln 59 & 72 for an alternative attempt =====
-            
-        var rating = $("<p>").text("rating " + movie[i].rating);
-             //currently loging object:object
-            console.log("this should be the individualized rating: " + rating);
-            //tested, the ratings are indeed beings withing the paramiters of R
-            //the &ratings=R is not functioning... tested with it and without...
-            //same gifs came up with and without it...trying to get rating of each 
-            //individual gif
-             $("movies").append(rating);
-       //=============================================================================
     }
     
     //==========not sure why I had this div being emptied but it was throwing an error so I commented it out=======
@@ -49,15 +38,16 @@ $(document).on("click", ".movieButtons", function(){
     var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ officeSpace + "&apiKey=iN6BUxJhH6HZCWIAFBGNbMiNRKqhIjhQ&limit=10&ratings=g";
     $(".index_images").empty();
 
-// ajax call
-$.ajax({
-    url:queryURL,
-    method: "GET"
-}).then(function(response){
-    console.log(response.data[0].images.fixed_width_small);
+    // ajax call
+    $.ajax({
+        url:queryURL,
+        method: "GET"
+    }).then(function(response){
+        console.log(response.data[0].images.fixed_width_small);
     for(var i=0; i < 10; i++){ 
-    var rating = $("<p>"); //just messing to see if this will call to ln 72
-    var images = $("<img>");
+    
+    //========images created limited to 10 (workaround before I knew about the &limit= part on the url)======
+        var images = $("<img>");
         images.attr("class", "buttonsPreGen");
         //is the default 
         images.attr("src", response.data[i].images.fixed_width_still.url);
@@ -65,15 +55,15 @@ $.ajax({
         images.attr("data-still", response.data[i].images.fixed_width_still.url);
         images.attr("data-animate", response.data[i].images.fixed_width_downsampled.url);
         images.attr("data-state", "still");
-       
-
-    //=======trying to add the data rating to the images===============
+             //appending the iamges to the page
+         $(".index_images").append(images);
+    //=========end of image data being extracted and appended to <img> element================================
+    
+    //=======added the data rating to the images==============================================================
+         var rating = $("<p>").html("<h5>Rating:" + response.data[i].rating + " <i class='fas fa-thumbs-up'></i><br><br></h5>");
+        $(".index_images").append(rating);
+    //========================================================================================================
       
-        rating.attr("data-rating", response.data[i].rating.url);
-         console.log("this should be the rating <p> element info: " + rating); //logging object:object still
-    //================================================================
-        //appending the iamges to the page
-        $(".index_images").append(images);
     }
    });
 })
